@@ -1,0 +1,3 @@
+$(document).foundation();
+
+'use strict';
