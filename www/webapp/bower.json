@@ -2,6 +2,7 @@
   "name": "foundation-libsass-template",
   "dependencies": {
     "foundation": "zurb/bower-foundation",
+    "svg.js" : "latest",
     "foundation-icon-fonts": "zurb/foundation-icon-fonts"
   }
 }
