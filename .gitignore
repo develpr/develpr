@@ -4,3 +4,4 @@
 cookbooks
 .vagrant
 tmp/
+www/webapp/npm-debug.log
