@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-#sudo echo deb http://dl.hhvm.com/ubuntu precise main | sudo tee /etc/apt/sources.list.d/hhvm.list -y
+sudo apt-get update
+
+sudo apt-get install software-properties-common python-software-properties -y
+
 sudo add-apt-repository ppa:chris-lea/node.js -y
 sudo add-apt-repository ppa:ondrej/php5 -y
-sudo add-apt-repository ppa:chris-lea/node.js -y
 
 sudo apt-get update
 
