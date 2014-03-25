@@ -40,6 +40,7 @@ npm install -g bower
 npm install -g grunt-cli
 bower install --allow-root
 sudo npm install
+sudo grunt
 
 #install redis
 cd ~
