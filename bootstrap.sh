@@ -2,15 +2,20 @@
 
 #sudo echo deb http://dl.hhvm.com/ubuntu precise main | sudo tee /etc/apt/sources.list.d/hhvm.list -y
 sudo add-apt-repository ppa:chris-lea/node.js -y
+sudo add-apt-repository ppa:ondrej/php5 -y
+sudo add-apt-repository ppa:chris-lea/node.js -y
+
 sudo apt-get update
+
 sudo apt-get install -y unzip vim git-core curl wget build-essential python-software-properties
 sudp apt-get install git -y
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password password'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
 sudo apt-get -y install mysql-server
 sudo apt-get install nginx -y
-sudo apt-get install php5-fpm -y
-sudo apt-get install php5-cli -y
+
+
+sudo apt-get install php5-fpm php5-cli php5-cgi -y
 sudo apt-get install php5-mcrypt -y
 
 #Install/configure xdebug
@@ -29,9 +34,6 @@ sudo sed -i "s/127.0.0.1:9000/\/var\/run\/php5-fpm.sock/g" "/etc/php5/fpm/pool.d
 sudo service php5-fpm restart
 sudo service nginx restart
 sudo apt-get install npm -y
-sudo apt-get install nodejs -y
-sudo add-apt-repository ppa:chris-lea/node.js -y
-sudo apt-get update
 sudo apt-get install nodejs -y
 cd /var/www
 sudo composer install
