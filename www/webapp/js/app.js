@@ -41,6 +41,7 @@ develpr.shakeAlarm = function(){
     setTimeout(function(){develpr.shakeAlarm()}, 16*second);
 }
 
+//test
 develpr.sleepAlarm = function(){
     $('.alarm').removeClass('shake');
 }
@@ -121,7 +122,7 @@ $(function(){
                             var commitURL = "";
 
                             $.each(commitsJSON, function(index, item){
-                                if(item.author.login == "develpr"){
+                                if(!item.author || item.author.login == "develpr"){
                                     commitMessage = commitsJSON[0].commit.message;
                                     commitURL = commitsJSON[0].html_url;
                                     return;

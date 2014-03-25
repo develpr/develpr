@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
         sass: {
             options: {
-                includePaths: ['bower_components/foundation/scss', 'bower_components/foundation-icon-fonts']
+                includePaths: ['bower_components/prismjs', 'bower_components/foundation/scss', 'bower_components/foundation-icon-fonts']
             },
             dist: {
                 options: {
@@ -34,8 +34,11 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     'bower_components/jquery/dist/jquery.js',
-                    'bower_components/foundation/js/foundation.js',
+                    'bower_components/fastclick/lib/fastclick.js',
+                    'bower_components/foundation/js/foundation/foundation.js',
+                    'bower_components/foundation/js/foundation/foundation.offcanvas.js',
                     'bower_components/svg.js/dist/svg.js',
+                    'bower_components/prismjs/prism.js',
                     'js/app.js'
                 ],
                 dest: '../public/js/build/app.js'
@@ -57,6 +60,21 @@ module.exports = function(grunt) {
                         flatten: true,
                         src:"bower_components/foundation-icon-fonts/foundation-icons.woff",
                         dest:"../public/bower_components/foundation-icon-fonts/"
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src:"bower_components/modernizr/modernizr.js",
+                        dest:"../public/bower_components/modernizr/"
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src:"bower_components/prismjs/prism.css",
+                        dest:"bower_components/prismjs/",
+                        rename: function(dest, src) {
+                            return dest + '_prism.scss';
+                        }
                     }
                 ]
             }
@@ -73,6 +91,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('build', ['sass']);
-    grunt.registerTask('default', ['build','concat','uglify', 'sass', 'copy'])
-    grunt.registerTask('watch', ['build','concat','uglify', 'sass', 'copy' ,'watch'])
+    grunt.registerTask('default', ['copy', 'build','concat','uglify', 'sass'])
+    grunt.registerTask('watch', ['copy', 'build','concat','uglify', 'sass' ,'watch'])
 }
