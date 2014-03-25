@@ -39,6 +39,13 @@ module.exports = function(grunt) {
                     'bower_components/foundation/js/foundation/foundation.offcanvas.js',
                     'bower_components/svg.js/dist/svg.js',
                     'bower_components/prismjs/prism.js',
+                    'bower_components/prismjs/components/prism-clike.js',
+                    'bower_components/prismjs/components/prism-python.js',
+                    'bower_components/prismjs/components/prism-php.js',
+                    'bower_components/prismjs/components/prism-http.js',
+                    'bower_components/prismjs/components/prism-java.js',
+                    'bower_components/prismjs/components/prism-scss.js',
+                    'bower_components/prismjs/components/prism-css.js',
                     'js/app.js'
                 ],
                 dest: '../public/js/build/app.js'
