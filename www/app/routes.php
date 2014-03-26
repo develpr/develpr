@@ -28,9 +28,15 @@ Route::get('/projects/{slug}', function($slug){
 Route::get('/blog/{slug}', function($slug){
 
     $slug = trim(strtolower($slug));
-    $project = Project::where('slug', '=', $slug)->firstOrFail();
+    $post = Post::where('slug', '=', $slug)->firstOrFail();
 
-    return View::make('projects.show', array('project' => $project));
+    return View::make('posts.show', array('post' => $post));
+
+});
+
+Route::get('/blog', function($slug){
+
+	return View::make('posts.index', array('projects' => Posts::all()));
 
 });
 
