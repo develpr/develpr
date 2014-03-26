@@ -15,6 +15,7 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
 sudo apt-get -y install mysql-server
 sudo apt-get install nginx -y
+sudo apt-get install php5-mysql -y
 
 
 sudo apt-get install php5-fpm php5-cli php5-cgi -y
@@ -63,3 +64,5 @@ sudo sed -i "s/daemonize no/daemonize yes/g" "/etc/redis/6379.conf"
 sudo sed -i "s/dir .\//dir \/var\/redis\/6379/g" "/etc/redis/6379.conf"
 sudo update-rc.d redis_6379 defaults
 /etc/init.d/redis_6379 start
+
+sudo mysql -uroot -ppassword -e 'create database `database`;'

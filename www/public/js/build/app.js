@@ -15056,7 +15056,7 @@ $(function(){
 
     var draw = SVG('me-here')
     var images = ["sai.jpg"];
-    var image = draw.image('img/' + images[Math.floor(Math.random() * images.length)]).size(100, 100);
+    var image = draw.image('/img/' + images[Math.floor(Math.random() * images.length)]).size(100, 100);
     var circle = draw.circle(100,100);
     image.clipWith(circle);
 

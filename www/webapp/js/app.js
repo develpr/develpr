@@ -58,16 +58,13 @@ $(function(){
         $('.hide-the-code i').toggleClass('fi-arrows-out').toggleClass('fi-arrows-in');
     });
 
-
     //copy the main navigation into the off page menu
     //todo: when I move this into Laravel I'll probably not need this
     $(".off-canvas-list").html($('.large-menu ul').html());
 
-
-
     var draw = SVG('me-here')
     var images = ["sai.jpg"];
-    var image = draw.image('img/' + images[Math.floor(Math.random() * images.length)]).size(100, 100);
+    var image = draw.image('/img/' + images[Math.floor(Math.random() * images.length)]).size(100, 100);
     var circle = draw.circle(100,100);
     image.clipWith(circle);
 

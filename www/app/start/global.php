@@ -79,3 +79,23 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+Project::creating(function($project){
+    $slug = Str::slug($project->title);
+    $project->slug = $slug;
+});
+
+Post::creating(function($post){
+    $slug = Str::slug($post->title);
+    $post->slug = $slug;
+});
+
+Project::updating(function($project){
+    $slug = Str::slug($project->title);
+    $project->slug = $slug;
+});
+
+Post::updating(function($post){
+    $slug = Str::slug($post->title);
+    $post->slug = $slug;
+});
