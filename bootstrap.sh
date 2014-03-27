@@ -34,6 +34,9 @@ sudo mv composer.phar /usr/local/bin/composer
 sudo rm -rf /etc/nginx/sites-available
 sudo ln -s /root/sites-available /etc/nginx/sites-available
 sudo sed -i "s/127.0.0.1:9000/\/var\/run\/php5-fpm.sock/g" "/etc/php5/fpm/pool.d/www.conf"
+
+# sendfile on causes nginx to not properly serve static files that have changed
+sudo sed -i "s/sendfile on;/sendfile off;/g" "/etc/nginx/nginx.conf"
 sudo service php5-fpm restart
 sudo service nginx restart
 sudo apt-get install npm -y

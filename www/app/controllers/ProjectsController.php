@@ -2,6 +2,11 @@
 
 class ProjectsController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('auth', array('except' => array('index', 'show')));
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -10,7 +15,14 @@ class ProjectsController extends \BaseController {
 	public function index()
 	{
 		//todo: make pagination default size a config value
-		return View::make('projects.index', array('projects' => Project::paginate(6)));
+
+        if(Auth::check())
+            $projects = Project::orderBy('created_at', 'desc')->paginate(6);
+        else
+            $projects = Project::orderBy('created_at', 'desc')->where('published', '=', true)->paginate(6);
+
+
+        return View::make('projects.index', array('projects' => $projects));
 	}
 
 	/**
@@ -20,7 +32,7 @@ class ProjectsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('projects.create');
 	}
 
 	/**
@@ -30,7 +42,15 @@ class ProjectsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $project = new Project;
+
+        $project->fill(Input::all());
+
+        $project->user_id = Auth::user()->id;
+
+        $project->save();
+
+        return Redirect::to('/projects/' . $project->slug);
 	}
 
 	/**
@@ -42,7 +62,13 @@ class ProjectsController extends \BaseController {
 	public function show($id)
 	{
 
-        $project = Project::findOrFail($id);
+        if(is_numeric($id))
+            $project = Project::findOrFail($id);
+        else
+        {
+            $slug = trim(strtolower($id));
+            $project = Project::where('slug', '=', $slug)->firstOrFail();
+        }
 
         return View::make('projects.show', array('project' => $project));
 	}
@@ -55,7 +81,15 @@ class ProjectsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        if(is_numeric($id))
+            $project = Project::findOrFail($id);
+        else
+        {
+            $slug = trim(strtolower($id));
+            $project = Project::where('slug', '=', $slug)->firstOrFail();
+        }
+
+        return View::make('projects.edit', array('project' => $project));
 	}
 
 	/**
@@ -66,7 +100,16 @@ class ProjectsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$project = Project::findOrFail($id);
+
+        $project->fill(Input::all());
+
+        $project->user_id = Auth::user()->id;
+
+        $project->save();
+
+        return Redirect::to('/projects/' . $project->slug);
+
 	}
 
 	/**

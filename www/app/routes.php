@@ -13,17 +13,9 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('home');
 });
 
-Route::get('/projects/{slug}', function($slug){
-
-    $slug = trim(strtolower($slug));
-    $project = Project::where('slug', '=', $slug)->firstOrFail();
-
-    return View::make('projects.show', array('project' => $project));
-
-});
 
 Route::get('/blog/{slug}', function($slug){
 
@@ -37,7 +29,12 @@ Route::get('/blog/{slug}', function($slug){
 Route::get('/blog', function(){
 
 	//todo: make pagination default a config value
-	return View::make('posts.index', array('posts' => Post::paginate(6)));
+    if(Auth::check())
+        $posts = Post::paginate(6);
+    else
+        $posts = Post::where('published', '=', true)->paginate(6);
+
+	return View::make('posts.index', array('posts' => $posts));
 
 });
 
@@ -58,13 +55,13 @@ Route::get('/login', function(){
 });
 
 Route::post('/login', function(){
-    if(Auth::attempt(Input::all()))
+    if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
     {
-        Redirect::to('/');
+        return Redirect::to('/');
     }
     else
     {
-        Redirect::to('/login')->with(Input::all());
+        return Redirect::to('/login')->with(Input::all());
     }
 });
 

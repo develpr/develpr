@@ -16,7 +16,6 @@ class ProjectsTableSeeder extends Seeder {
             'repo'      => 'http://www.github.com/develpr/develpr-static',
             'user_id'   => 1,
             'published' => true,
-            'quote'     => 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.'
         );
 
 		$words = array('A', 'Fate', 'Ferry', 'The', "Hello", "Cat", "Kevin", "TYPO3", "German", "Facebook", "Virtual", "Telephone", "Apple", "Computers", "Programming", "PHP", "Africa", "SCUBA");
@@ -26,7 +25,8 @@ class ProjectsTableSeeder extends Seeder {
 		$teasers = array('<p>Maecenas sed diam eget.</p>','<p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>','<p>Donec ullamcorper nulla non metus auctor fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>', '<img src="http://farm4.staticflickr.com/3738/12898917765_7bfdd9c341_b.jpg" alt="" />', '<img src="http://farm4.staticflickr.com/3672/12732908365_897ebabc2d_b.jpg" alt="" />', '<img src="http://farm3.staticflickr.com/2848/12729748115_e67154d376_b.jpg". alt="" />');
 
 
-		for($i = 0; $i < 830; $i++)
+
+		for($i = 0; $i < 60; $i++)
 		{
 			$titleCount = rand(6, 12);
 			$title = "";
@@ -52,6 +52,7 @@ class ProjectsTableSeeder extends Seeder {
 
 			$data['title'] = $title;
 			$data['body'] = $content;
+            $data['published'] = (rand(1, 5) == 2);
 			$data['teaser'] = $teaser;
 
 			Project::create($data);

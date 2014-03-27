@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    outputStyle: 'compressed'
+
                 },
                 files: {
                     '../public/css/app.css': 'scss/app.scss'
@@ -19,14 +19,9 @@ module.exports = function(grunt) {
         watch: {
             grunt: { files: ['Gruntfile.js'] },
 
-            sass: {
+            src: {
                 files: 'scss/**/*.scss',
                 tasks: ['sass']
-            },
-
-            concat: {
-                files: 'js/*.js',
-                tasks: ['concat', 'uglify']
             }
         },
 
@@ -98,6 +93,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('build', ['sass']);
-    grunt.registerTask('default', ['copy', 'build','concat','uglify', 'sass'])
-    grunt.registerTask('watch', ['copy', 'build','concat','uglify', 'sass' ,'watch'])
+    grunt.registerTask('default', ['copy', 'build','concat','uglify', 'sass']);
 }

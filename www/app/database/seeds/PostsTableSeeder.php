@@ -21,7 +21,7 @@ class PostsTableSeeder extends Seeder {
 		$teasers = array('<p>Maecenas sed diam eget.</p>','<p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>','<p>Donec ullamcorper nulla non metus auctor fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>', '<img src="http://farm4.staticflickr.com/3738/12898917765_7bfdd9c341_b.jpg" alt="" />', '<img src="http://farm4.staticflickr.com/3672/12732908365_897ebabc2d_b.jpg" alt="" />', '<img src="http://farm3.staticflickr.com/2848/12729748115_e67154d376_b.jpg". alt="" />');
 
 
-        for($i = 0; $i < 30; $i++)
+        for($i = 0; $i < 60; $i++)
 		{
 			$titleCount = rand(5, 10);
 			$title = "";
@@ -47,6 +47,7 @@ class PostsTableSeeder extends Seeder {
 
 			$data['title'] = $title;
 			$data['body'] = $content;
+            $data['published'] = (rand(1, 5) == 2);
 			$data['teaser'] = $teaser;
 
 			Post::create($data);

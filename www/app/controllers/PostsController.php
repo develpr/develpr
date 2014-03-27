@@ -2,15 +2,10 @@
 
 class PostsController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    public function __construct()
+    {
+        $this->beforeFilter('auth');
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -19,7 +14,7 @@ class PostsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        return View::make('posts.create');
 	}
 
 	/**
@@ -29,18 +24,15 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
+        $post = new Post;
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+        $post->fill(Input::all());
+
+        $post->user_id = Auth::user()->id;
+
+        $post->save();
+
+        return Redirect::to('/blog/' . $post->slug);
 	}
 
 	/**
@@ -51,7 +43,15 @@ class PostsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        if(is_numeric($id))
+            $post = Post::findOrFail($id);
+        else
+        {
+            $slug = trim(strtolower($id));
+            $post = Post::where('slug', '=', $slug)->firstOrFail();
+        }
+
+        return View::make('posts.edit', array('post' => $post));
 	}
 
 	/**
@@ -62,8 +62,17 @@ class PostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
-	}
+        $post = Post::findOrFail($id);
+
+        $post->fill(Input::all());
+
+        $post->user_id = Auth::user()->id;
+
+        $post->save();
+
+        return Redirect::to('/blog/' . $post->slug);
+
+    }
 
 	/**
 	 * Remove the specified resource from storage.

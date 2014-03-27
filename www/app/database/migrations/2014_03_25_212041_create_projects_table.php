@@ -21,7 +21,6 @@ class CreateProjectsTable extends Migration {
 			$table->integer('user_id');
 			$table->boolean('published')->default(0);
 			$table->string('repo');
-			$table->text('quote');
 			$table->timestamps();
 		});
 	}

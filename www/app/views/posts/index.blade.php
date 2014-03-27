@@ -8,7 +8,7 @@ Blog
 
 @foreach($posts as $post)
 <row>
-	<div class="columns content-card post">
+	<div class="columns content-card post <?php echo $post->published ? "" : "unpublished" ?>">
 		<h4 class="subheader">
 			Blog
 		</h4>
@@ -28,7 +28,10 @@ Blog
 </row>
 
 @endforeach
-
-<?php echo $posts->links(); ?>
+<row>
+    <div class="columns">
+        <?php echo $posts->links(); ?>
+    </div>
+</row>
 
 @stop

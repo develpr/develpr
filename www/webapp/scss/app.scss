@@ -115,14 +115,22 @@ h1,h2,h3{
   margin-right:7px;
 }
 
+.off-canvas-list li a span{
+  display:inline !important;
+}
+
 .content-card{
   padding-top:1em;
-  background:url("../img/paper_fibers.jpg") top left repeat;
+  background:url("/img/paper_fibers.jpg") top left repeat;
   text-shadow: 0 1px 2px #FFF;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.45);
   -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.45);
   box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.45);
   margin-bottom:1.82em;
+}
+
+.content-card.unpublished{
+  opacity:.6;
 }
 
 .video-wrapper{
@@ -143,10 +151,16 @@ h4.subheader{
   text-align:right;
 }
 
+.create .more-card{
+  border-top:none;
+  text-align:center;
+  margin-top:0;
+  margin-bottom:1em;
+}
+
 .more-card a{
   display:block;
 }
-
 
 .footer{
   padding:2em 0;
@@ -323,4 +337,15 @@ ul.github-stats span{
 
 .footer .alarm{
   height:100px;
+}
+
+ul.pagination{
+  margin:0 auto;
+}
+
+.pagination li.active a, .pagination li.active span{
+  @include pagination-current-item(false);
+  font-weight:inherit;
+  padding:0.1825rem 0.625rem 0.1825rem; //todo: use variables
+  background: #9e8e80;
 }

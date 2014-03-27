@@ -80,6 +80,9 @@ App::down(function()
 
 require app_path().'/filters.php';
 
+/**
+ * Handle creationg of slugs
+ */
 Project::creating(function($project){
     $slug = Str::slug($project->title);
     $project->slug = $slug;
@@ -98,4 +101,13 @@ Project::updating(function($project){
 Post::updating(function($post){
     $slug = Str::slug($post->title);
     $post->slug = $slug;
+});
+
+
+/**
+ * Handle 404
+ */
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array(), 404);
 });
