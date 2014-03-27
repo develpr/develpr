@@ -9,7 +9,8 @@ class ProjectsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('projects.index', array('projects' => Project::all()));
+		//todo: make pagination default size a config value
+		return View::make('projects.index', array('projects' => Project::paginate(6)));
 	}
 
 	/**

@@ -9,7 +9,7 @@ Blog
 @foreach($posts as $post)
 <row>
 	<div class="columns content-card post">
-		<h4>
+		<h4 class="subheader">
 			Blog
 		</h4>
 		<h3>
@@ -28,5 +28,7 @@ Blog
 </row>
 
 @endforeach
+
+<?php echo $posts->links(); ?>
 
 @stop

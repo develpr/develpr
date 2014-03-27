@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="large-8 medium-8 small-12 columns">
-                <div class="title">devel<span>o</span>p<span>e</span>r</div>
+                <div class="title"><a href="/">devel<span>o</span>p<span>e</span>r</a></div>
             </div>
         </div>
     </div>

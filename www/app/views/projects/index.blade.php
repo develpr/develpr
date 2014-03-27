@@ -9,7 +9,7 @@ Projects
 	@foreach($projects as $project)
 	<row>
 		<div class="columns content-card project">
-			<h4>
+			<h4 class="subheader">
 				A Project
 			</h4>
 			<h3>
@@ -28,5 +28,7 @@ Projects
 	</row>
 
 	@endforeach
+
+<?php echo $posts->links(); ?>
 
 @stop

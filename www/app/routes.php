@@ -34,14 +34,24 @@ Route::get('/blog/{slug}', function($slug){
 
 });
 
-Route::get('/blog', function($slug){
+Route::get('/blog', function(){
 
-	return View::make('posts.index', array('projects' => Posts::all()));
+	//todo: make pagination default a config value
+	return View::make('posts.index', array('posts' => Post::paginate(6)));
 
 });
 
 Route::resource('posts', 'PostsController');
 Route::resource('projects', 'ProjectsController');
+
+
+Route::get('/contact', function(){
+	return View::make('contact');
+});
+
+Route::post('/contact', function(){
+
+});
 
 
 /**
