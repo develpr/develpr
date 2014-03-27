@@ -53,6 +53,27 @@ Route::post('/contact', function(){
 
 });
 
+Route::get('/login', function(){
+   return View::make('login');
+});
+
+Route::post('/login', function(){
+    if(Auth::attempt(Input::all()))
+    {
+        Redirect::to('/');
+    }
+    else
+    {
+        Redirect::to('/login')->with(Input::all());
+    }
+});
+
+Route::get('/logout', function(){
+    Auth::logout();
+    return Redirect::to('/');
+});
+
+
 
 /**
  *

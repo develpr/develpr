@@ -27,7 +27,7 @@
 </aside>
 <section class="main-section">
 <div class="row i-will-be-down-there-a-bit">
-    <div class="large-6 medium-6 small-12 columns">
+    <div class="large-5 medium-5 small-12 columns">
         <div class="row">
             <div class="large-4 medium-4 small-12 columns">
                 <div id="me-here">
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="large-6 medium-6 show-for-large-up columns" style="padding-right:0;">
+    <div class="large-7 medium-7 show-for-large-up columns" style="padding-right:0;">
         <nav class="large-menu">
             <ul>
                 <li>
@@ -72,6 +72,19 @@
                         <i class="fi-mail">
                         </i>
                         Contact </a>
+                </li>
+                <li>
+                    @if(Auth::check())
+                    <a href="/logout">
+                        <i class="fi-unlock"></i>
+                        <span class="show-for-small-down">Logout</span>
+                    </a>
+                    @else
+                    <a href="/login">
+                        <i class="fi-lock"></i>
+                        <span class="show-for-small-down">Login</span>
+                    </a>
+                    @endif
                 </li>
             </ul>
         </nav>

@@ -29,6 +29,6 @@ Projects
 
 	@endforeach
 
-<?php echo $posts->links(); ?>
+<?php echo $projects->links(); ?>
 
 @stop
