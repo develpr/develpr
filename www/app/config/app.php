@@ -176,4 +176,8 @@ return array(
 
 	),
 
+    'develpr' => array(
+        'imagePath' => '/uploads/images/',
+    ),
+
 );

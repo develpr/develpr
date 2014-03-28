@@ -22,6 +22,11 @@ module.exports = function(grunt) {
             src: {
                 files: 'scss/**/*.scss',
                 tasks: ['sass']
+            },
+
+            javascript: {
+                files: 'js/app.js',
+                tasks: ['concat', 'uglify']
             }
         },
 

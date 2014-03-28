@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title')
-Create New Post | Kevin Mitchell | Develpr
+Create New Post
 @stop
 
 @section('content')

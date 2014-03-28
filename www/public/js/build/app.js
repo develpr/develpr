@@ -15038,6 +15038,14 @@ develpr.sleepAlarm = function(){
 
 $(function(){
 
+    //todo: I'm deciding if I really want to do this or not..
+    //Times I've thought about this as of now: 2
+//    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+//        $('.content-card.project, .content-card.post').on('click', function(event){
+//            window.location.href = $(this).find('a').first().attr('href');
+//        });
+//    }
+
     develpr.shakeAlarm();
 
     //Simple toggle for showing/hiding the code snippets on smaller devices

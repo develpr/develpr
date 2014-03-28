@@ -1,0 +1,4 @@
+# Ignore everything in this directory - these are user uploads
+*
+# Except this file
+!.gitignore

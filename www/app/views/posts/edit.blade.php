@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title')
-Edit {{$post->title}} | Kevin Mitchell | Develpr
+Edit Post: {{$post->title}}
 @stop
 
 @section('content')

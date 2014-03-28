@@ -1,0 +1,1 @@
+/var/www/app/views/configurations/index.blade.php

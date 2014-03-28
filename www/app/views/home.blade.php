@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title')
-    Kevin Mitchell | Develpr
+    A Laravel and Magento Guy Lives Here
 @stop
 
 @section('content')

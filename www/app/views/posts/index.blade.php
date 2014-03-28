@@ -6,6 +6,19 @@ Blog
 
 @section('content')
 
+@if(Auth::check())
+<row>
+    <div class="columns content-card create">
+        <div class="more-card">
+            <a href="/posts/create">
+                <i class="fi-link"></i>
+                Create New Post
+            </a>
+        </div>
+    </div>
+</row>
+@endif
+
 @foreach($posts as $post)
 <row>
 	<div class="columns content-card post <?php echo $post->published ? "" : "unpublished" ?>">

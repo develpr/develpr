@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('title')
-Create New Project | Kevin Mitchell | Develpr
+Create New Project
 @stop
 
 @section('content')

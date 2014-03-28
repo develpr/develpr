@@ -70,8 +70,33 @@ Route::get('/logout', function(){
     return Redirect::to('/');
 });
 
+//Routes that are only accessible to somebody logged in
+Route::group(array('before' => 'auth'), function()
+{
+    Route::get('/files', function(){
+       return View::make('admin/files');
+    });
 
+    Route::post('/files', function(){
 
+        $basePath = public_path() . Config::get('app.develpr.imagePath');
+
+        if (Input::hasFile('image'))
+        {
+            if(File::exists($basePath . Input::file('image')->getClientOriginalName()) && !Input::get('override'))
+                throw new \Symfony\Component\HttpFoundation\File\Exception\FileException;
+            else
+            {
+                Input::file('image')->move($basePath, Input::file('image')->getClientOriginalName());
+            }
+            return Redirect::to('/files');
+        }
+    });
+
+    //Handle configuration options
+    Route::resource('configurations', 'ConfigurationsController');
+
+});
 /**
  *
 function slug($title, $separator = '-', $removeWords = false)
