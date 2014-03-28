@@ -6,12 +6,12 @@ Contact
 
 @section('content')
 
-<row>
+<div class="row">
 	<div class="columns content-card">
 		<h1>
 			Get in touch.
 		</h1>
 	</div>
-</row>
+</div>
 
 @stop

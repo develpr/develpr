@@ -7,7 +7,7 @@ Blog
 @section('content')
 
 @if(Auth::check())
-<row>
+<div class="row">
     <div class="columns content-card create">
         <div class="more-card">
             <a href="/posts/create">
@@ -16,11 +16,11 @@ Blog
             </a>
         </div>
     </div>
-</row>
+</div>
 @endif
 
 @foreach($posts as $post)
-<row>
+<div class="row">
 	<div class="columns content-card post <?php echo $post->published ? "" : "unpublished" ?>">
 		<h4 class="subheader">
 			Blog
@@ -38,13 +38,13 @@ Blog
 			</a>
 		</div>
 	</div>
-</row>
+</div>
 
 @endforeach
-<row>
+<div class="row">
     <div class="columns">
         <?php echo $posts->links(); ?>
     </div>
-</row>
+</div>
 
 @stop

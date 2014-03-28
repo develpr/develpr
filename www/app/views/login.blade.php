@@ -6,7 +6,7 @@ Projects
 
 @section('content')
 
-<row>
+<div class="row">
     <div class="columns content-card project">
         <h4 class="subheader">
             Login
@@ -29,5 +29,5 @@ Projects
         {{ Form::close() }}
 
     </div>
-</row>
+</div>
 @stop

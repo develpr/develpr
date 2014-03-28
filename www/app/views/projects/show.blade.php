@@ -9,7 +9,7 @@
 @section('content')
 
 @if(Auth::check())
-<row>
+<div class="row">
     <div class="columns content-card create">
         <div class="more-card">
             <a href="/projects/{{$project->id}}/edit">
@@ -18,10 +18,10 @@
             </a>
         </div>
     </div>
-</row>
+</div>
 @endif
 
-<row>
+<div class="row">
     <div class="columns content-card project">
         <h1>
             {{$project->title}}
@@ -36,6 +36,6 @@
             </a>
         </div>
     </div>
-</row>
+</div>
 
 @stop

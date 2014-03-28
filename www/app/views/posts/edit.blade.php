@@ -6,7 +6,7 @@ Edit Post: {{$post->title}}
 
 @section('content')
 
-<row>
+<div class="row">
     <div class="columns content-card post">
         <h4 class="subheader">
             New Post
@@ -43,6 +43,6 @@ Edit Post: {{$post->title}}
         </div>
         {{ Form::close() }}
     </div>
-</row>
+</div>
 
 @stop

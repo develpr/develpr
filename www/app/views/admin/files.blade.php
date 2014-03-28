@@ -6,7 +6,7 @@ Edit Files
 
 @section('content')
 
-<row>
+<div class="row">
     <div class="columns content-card posts">
 
         {{ Form::open(array('url' => '/files', 'files' => true)) }}
@@ -27,6 +27,6 @@ Edit Files
         </div>
         {{ Form::close() }}
     </div>
-</row>
+</div>
 
 @stop

@@ -6,7 +6,7 @@ Create New Project
 
 @section('content')
 
-<row>
+<div class="row">
     <div class="columns content-card project">
         <h4 class="subheader">
             New Project
@@ -43,6 +43,6 @@ Create New Project
         </div>
         {{ Form::close() }}
     </div>
-</row>
+</div>
 
 @stop

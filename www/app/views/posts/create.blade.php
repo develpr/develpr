@@ -6,7 +6,7 @@ Create New Post
 
 @section('content')
 
-<row>
+<div class="row">
     <div class="columns content-card posts">
         <h4 class="subheader">
             New Post
@@ -39,6 +39,6 @@ Create New Post
         </div>
         {{ Form::close() }}
     </div>
-</row>
+</div>
 
 @stop

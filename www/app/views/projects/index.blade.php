@@ -7,7 +7,7 @@ Projects
 @section('content')
 
 @if(Auth::check())
-<row>
+<div class="row">
     <div class="columns content-card create">
         <div class="more-card">
             <a href="/projects/create">
@@ -16,11 +16,11 @@ Projects
             </a>
         </div>
     </div>
-</row>
+</div>
 @endif
 
 @foreach($projects as $project)
-<row>
+    <div class="row">
     <div class="columns content-card project <?php echo $project->published ? "" : "unpublished" ?>">
         <h4 class="subheader">
             A Project
@@ -38,14 +38,14 @@ Projects
             </a>
         </div>
     </div>
-</row>
+</div>
 
 @endforeach
 
-<row>
+<div class="row">
     <div class="columns">
         <?php echo $projects->links(); ?>
     </div>
-</row>
+</div>
 
 @stop
