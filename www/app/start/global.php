@@ -104,6 +104,16 @@ Post::updating(function($post){
 });
 
 
+Configuration::saved(function($configuration){
+    Redis::set('configuration.' . strtolower($configuration->key), $configuration->value);
+    return true;
+});
+
+Configuration::deleted(function($configuration){
+    Redis::del('configuration.' . strtolower($configuration->key));
+    return true;
+});
+
 /**
  * Handle 404
  */
@@ -113,7 +123,3 @@ App::missing(function($exception)
 });
 
 
-View::composer('layout', function($view)
-{
-	$view->with($menu,Menu::get());
-});

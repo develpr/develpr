@@ -13,13 +13,14 @@ class Setting{
 		{
 			$configuration = Configuration::where('key', '=', $key)->first();
 			if($configuration)
-				Redis::set('configuration.' . strtolower($key), $configuration->value);
-
-			$configuration = $configuration->value;
-		}
+            {
+                Redis::set('configuration.' . strtolower($key), $configuration->value);
+                $configuration = $configuration->value;
+            }
+        }
 
 		if(!$configuration)
-			return '';
+			return false;
 
 		return $configuration;
 

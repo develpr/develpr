@@ -11,7 +11,7 @@ class ConfigurationsController extends \BaseController {
 	{
 		$configurations = Configuration::all();
 
-		return View::make('configurations.index')->with(array('configurations' => $configurations));
+		return View::make('configurations.edit')->with(array('configurations' => $configurations));
 	}
 
 	/**
@@ -64,8 +64,33 @@ class ConfigurationsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+
 	}
+
+    /**
+     * Updates the specified resources in storage.
+     *
+     * @return Response
+     */
+    public function massUpdate()
+    {
+        foreach(Input::all() as $key => $newValue)
+        {
+            if(Setting::get($key) !== false && $newValue !== Setting::get($key))
+            {
+                $configuration = Configuration::where('key', '=', strtolower($key))->first();  //todo: do this better
+
+                //If no configuration was loaded, then this configuration doesn't exist so shouldn't be updated
+                if(!$configuration)
+                    continue;
+
+                $configuration->value = $newValue;
+                $configuration->save();
+            }
+        }
+
+        return Redirect::to('/configurations');
+    }
 
 	/**
 	 * Remove the specified resource from storage.

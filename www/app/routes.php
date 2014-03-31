@@ -13,8 +13,6 @@
 
 Route::get('/', function()
 {
-	$test = Setting::get('photo');
-
 	return View::make('home');
 });
 
@@ -97,7 +95,7 @@ Route::group(array('before' => 'auth'), function()
 
     //Handle configuration options
     Route::resource('configurations', 'ConfigurationsController');
-
+    Route::put('/configurations', 'ConfigurationsController@massUpdate');
 });
 /**
  *
