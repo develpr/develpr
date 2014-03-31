@@ -9,7 +9,9 @@ class ConfigurationsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$configurations = Configuration::all();
+
+		return View::make('configurations.index')->with(array('configurations' => $configurations));
 	}
 
 	/**

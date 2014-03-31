@@ -13,6 +13,8 @@
 
 Route::get('/', function()
 {
+	$test = Setting::get('photo');
+
 	return View::make('home');
 });
 
@@ -57,7 +59,7 @@ Route::get('/login', function(){
 Route::post('/login', function(){
     if(Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
     {
-        return Redirect::to('/');
+        return Redirect::intended('/');
     }
     else
     {

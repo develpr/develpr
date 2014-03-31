@@ -99,7 +99,7 @@
             <div class="columns content-card">
                 <div id="hcard-Kevin-A-Mitchell" class="vcard row">
                     <div class="columns large-12 medium-6 small-12">
-                        <img src="/img/me_beard.jpg" alt="photo of Kevin" class="photo"/>
+                        <img src="{{Setting::get('photo')}}" alt="photo of Kevin" class="photo"/>
 								<span class="fn n">
                                     <h1>
                                         <span class="given-name">

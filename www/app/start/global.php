@@ -111,3 +111,9 @@ App::missing(function($exception)
 {
     return Response::view('errors.missing', array(), 404);
 });
+
+
+View::composer('layout', function($view)
+{
+	$view->with($menu,Menu::get());
+});

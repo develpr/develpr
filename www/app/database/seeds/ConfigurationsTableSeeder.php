@@ -1,20 +1,24 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
-use Faker\Factory as Faker;
-
 class ConfigurationsTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$faker = Faker::create();
+		DB::table('configurations')->delete();
 
-		foreach(range(1, 10) as $index)
-		{
-			Configuration::create([
+		Configuration::create(array(
+			'key'		=> 'photo',
+			'value'		=> '/uploads/images/me.png',
+			'user_id'	=> 1,
+			'visible'	=> true
+		));
 
-			]);
-		}
+		Configuration::create(array(
+			'key'		=> 'looking',
+			'value'		=> '1',
+			'user_id'	=> 1,
+			'visible'	=> true
+		));
 	}
 
 }

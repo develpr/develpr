@@ -17,6 +17,8 @@
 			"app/controllers",
 			"app/models",
 			"app/database/migrations",
+			"app/facades",
+			"app/providers",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		]
