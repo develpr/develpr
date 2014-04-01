@@ -136,7 +136,7 @@
                     </div>
                     <div class="columns large-12">
                         <div class="more-card">
-                            <a href="/me">
+                            <a href="/kevin">
                                 <i class="fi-link"></i>
                                 More Me
                             </a>
@@ -204,6 +204,9 @@
 </a>
 </div>
 </div>
+<script>
+    var amLooking = {{Setting::get('looking');}}
+</script>
 <script src="/js/build/app.min.js"></script>
 
 <script>

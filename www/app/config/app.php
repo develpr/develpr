@@ -180,6 +180,10 @@ return array(
 
     'develpr' => array(
         'imagePath' => '/uploads/images/',
+        'postsUrl'  => '/blog/',
+        'projectsUrl'   => '/projects/',
     ),
+
+
 
 );

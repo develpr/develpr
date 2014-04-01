@@ -3,6 +3,11 @@
 class Post extends \Eloquent {
     protected $fillable = array('title', 'teaser', 'published', 'body');
 
+    public function getUrl($relative = true)
+    {
+        return Config::get('app.develpr.postsUrl') . $this->slug;
+    }
+
     public function scopePublished($query)
     {
         return $query->where('published', '=', 1);

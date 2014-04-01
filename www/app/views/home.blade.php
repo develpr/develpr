@@ -12,7 +12,7 @@
             {{Setting::get('intro')}}
         </p>
         <div class="more-card">
-            <a href="/me">
+            <a href="/kevin">
                 <i class="fi-link"></i>
                 More Me
             </a>
@@ -30,7 +30,7 @@ Something that took me more then a day to do.
 -->
         </h4>
         <h3>
-            {{$project->title}}
+            <a href="{{$project->getUrl()}}">{{$project->title}}</a>
         </h3>
 
         {{$project->teaser}}
@@ -54,7 +54,7 @@ Something that took me more then a day to do.
 -->
         </h4>
         <h3>
-            {{$post->title}}
+            <a href="{{$post->getUrl()}}">{{$post->title}}</a>
         </h3>
 
         {{$post->teaser}}

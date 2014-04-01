@@ -26,13 +26,13 @@ Blog
 			Blog
 		</h4>
 		<h3>
-			{{$post->title}}
+            <a href="{{$post->getUrl()}}">{{$post->title}}</a>
 		</h3>
 
 		{{$post->teaser}}
 
 		<div class="more-card">
-			<a href="/blog/{{$post->slug}}">
+			<a href="{{$post->getUrl()}}">
 				<i class="fi-link"></i>
 				Read More
 			</a>

@@ -15046,6 +15046,7 @@ $(function(){
 //        });
 //    }
 
+    //Add a new configuration
     $('#addConfiguration').on('click', function(event){
         event.preventDefault();
         var newKey = $('#key').val();
@@ -15062,7 +15063,8 @@ $(function(){
         });
     });
 
-    develpr.shakeAlarm();
+    if(amLooking == true)
+        develpr.shakeAlarm();
 
     //Simple toggle for showing/hiding the code snippets on smaller devices
     $('.hide-the-code').on('click', function(event){
