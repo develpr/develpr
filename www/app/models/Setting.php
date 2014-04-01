@@ -3,6 +3,10 @@
 use \Redis;
 use \Configuration;
 
+/**
+ * Class Setting
+ * @package Develpr
+ */
 class Setting{
 
 	public function get($key)
@@ -19,7 +23,7 @@ class Setting{
             }
         }
 
-		if(!$configuration)
+		if(is_null($configuration))
 			return false;
 
 		return $configuration;

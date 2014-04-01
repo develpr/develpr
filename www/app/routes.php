@@ -13,7 +13,10 @@
 
 Route::get('/', function()
 {
-	return View::make('home');
+	return View::make('home')->with(array(
+        'project' => Project::random()->published()->first(),
+        'post' => Post::orderBy('created_at', 'desc')->published()->first()
+    ));
 });
 
 

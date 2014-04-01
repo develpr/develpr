@@ -31,7 +31,14 @@ class ConfigurationsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $configuration = new Configuration;
+        $configuration->user_id = Auth::user()->id;
+        $configuration->key = Input::get('key');
+        $configuration->visible = true;
+
+        $configuration->save();
+
+        return Response::json(true);
 	}
 
 	/**

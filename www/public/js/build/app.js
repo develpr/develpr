@@ -15046,6 +15046,22 @@ $(function(){
 //        });
 //    }
 
+    $('#addConfiguration').on('click', function(event){
+        event.preventDefault();
+        var newKey = $('#key').val();
+
+        var request = $.ajax({
+            url: $(this).attr('a'),
+            type: 'POST',
+            data: {key:newKey},
+            dataType: 'json'
+        });
+
+        request.done(function(result){
+            window.location.reload();
+        });
+    });
+
     develpr.shakeAlarm();
 
     //Simple toggle for showing/hiding the code snippets on smaller devices

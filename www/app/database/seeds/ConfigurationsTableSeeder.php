@@ -19,6 +19,13 @@ class ConfigurationsTableSeeder extends Seeder {
 			'user_id'	=> 1,
 			'visible'	=> true
 		));
+
+		Configuration::create(array(
+			'key'		=> 'intro',
+			'value'		=> "Hi, I'm Kevin. I'm a software engineer living Oakland California. I occasionally have something useful to say or interesting to share, and this is the place for me to do it.",
+			'user_id'	=> 1,
+			'visible'	=> true
+		));
 	}
 
 }

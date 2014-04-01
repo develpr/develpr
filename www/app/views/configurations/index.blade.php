@@ -7,6 +7,18 @@ Edit Configurations
 @section('content')
 
 <div class="row">
+    <div class="columns content-card create">
+        <div class="more-card">
+            <a href="/configurations/create">
+                <i class="fi-link"></i>
+                Create New Configuration
+            </a>
+            <input name="key" />
+        </div>
+    </div>
+</div>
+
+<div class="row">
 	<div class="columns content-card project">
 		<h4 class="subheader">
 			Configurations

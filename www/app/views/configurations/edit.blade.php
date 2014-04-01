@@ -28,4 +28,13 @@ Edit Configurations
     </div>
 </div>
 
+<div class="row">
+    <div class="columns content-card">
+        <div>
+            <input name="key" type="text" id="key" />
+            <a class="button radius" href="/configurations/create" id="addConfiguration">Create New Configuration</a>
+        </div>
+    </div>
+</div>
+
 @stop
