@@ -205,7 +205,7 @@
 </div>
 </div>
 <script>
-    var amLooking = {{Setting::get('looking');}}
+    var amLooking = <?php echo Setting::get('looking') ? 'true' : 'false'?>;
 </script>
 <script src="/js/build/app.min.js"></script>
 
