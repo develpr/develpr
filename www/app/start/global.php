@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader
@@ -96,6 +96,7 @@ Post::creating(function($post){
 Project::updating(function($project){
 
     $originalSlug = $project->slug;
+    $originalUrl = $project->getUrl();
 
 	$slug = Str::slug($project->title);
     $project->slug = $slug;
@@ -104,7 +105,7 @@ Project::updating(function($project){
 	if($originalSlug != $slug)
 	{
 		$redirect = new Develpr\Redirect;
-		$redirect->source = $originalSlug;
+		$redirect->source = $originalUrl;
 		$redirect->resource_id = $project->id;
 		$redirect->type = 'project';
 
@@ -114,6 +115,7 @@ Project::updating(function($project){
 
 Post::updating(function($post){
 	$originalSlug = $post->slug;
+    $originalUrl = $post->getUrl();
 
     $slug = Str::slug($post->title);
     $post->slug = $slug;
@@ -122,7 +124,7 @@ Post::updating(function($post){
 	if($originalSlug != $slug)
 	{
 		$redirect = new Develpr\Redirect;
-		$redirect->source = $originalSlug;
+		$redirect->source = $originalUrl;
 		$redirect->resource_id = $post->id;
 		$redirect->type = 'post';
 
@@ -133,7 +135,7 @@ Post::updating(function($post){
 
 
 Develpr\Redirect::saved(function($redirect){
-	Redis::set('redirect.' . $redirect->type . ":". $redirect->source, $redirect->resource_id);
+	Redis::set('redirect:' . $redirect->source, $redirect->resource_id);
 });
 
 Configuration::saved(function($configuration){
@@ -147,11 +149,37 @@ Configuration::deleted(function($configuration){
 });
 
 /**
+ * We will handle missing models by checking to see if a previous title existed with the slug we are looking for
+ */
+App::error(function(ModelNotFoundException $e)
+{
+    $path = Request::path();
+
+    $id = Redis::get('redirect:/' . $path);
+
+    if(is_null($id))
+        return Response::view('errors.missing', array(), 404);
+
+    //todo: this could be improved - checking a string on an exception we don't control feels "loose"
+    if($e->getModel() == "Project")
+        $resource = Project::findOrFail($id);
+    else if($e->getModel() == "Post")
+        $resource = Post::findOrFail($id);
+
+    if(!$resource)
+        return Response::view('errors.missing', array(), 404);
+
+    return Redirect::to($resource->getUrl(), 301);
+
+});
+
+/**
  * Handle 404
  */
 App::missing(function($exception)
 {
     return Response::view('errors.missing', array(), 404);
 });
+
 
 

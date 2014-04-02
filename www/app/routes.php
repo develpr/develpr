@@ -28,14 +28,7 @@ Route::get('/blog/{slug}', function($slug){
 	{
 		$slug = trim(strtolower($slug));
 
-		$post = Post::where('slug', '=', $slug)->first();
-	}
-	if(!$post)
-	{
-		$id = Redis::get('redirect.post:' . $slug);
-		$post = Post::findOrFail($id);
-
-		return Redirect::to($post->getUrl(), 301);
+		$post = Post::where('slug', '=', $slug)->firstOrFail();
 	}
 
     return View::make('posts.show', array('post' => $post));
