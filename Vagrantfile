@@ -12,9 +12,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
    config.hostmanager.enabled = true
    config.hostmanager.manage_host = true
-  
+   config.hostmanager.aliases = %w(www.develpr.dev)
+
   config.vm.hostname = "#{$project_name}.dev"
-  config.vm.network :private_network, ip: "192.168.144.100"  
+
+  config.vm.network :private_network, ip: "192.168.144.100"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is

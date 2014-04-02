@@ -61,14 +61,20 @@ class ProjectsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-
         if(is_numeric($id))
-            $project = Project::findOrFail($id);
-        else
+            $project = Project::find($id);
+        if(!is_numeric($id) || !$project) //it's possible that the title was numeric
         {
             $slug = trim(strtolower($id));
-            $project = Project::where('slug', '=', $slug)->firstOrFail();
+            $project = Project::where('slug', '=', $slug)->first();
         }
+		if(!$project)
+		{
+			$id = Redis::get('redirect.project:' . $id);
+			$project = Project::findOrFail($id);
+
+			return Redirect::to($project->getUrl(), 301);
+		}
 
         return View::make('projects.show', array('project' => $project));
 	}

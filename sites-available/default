@@ -13,11 +13,17 @@
 ##
 
 server {
+    listen       80;
+    server_name  develpr.dev;
+    return       301 http://www.develpr.dev$request_uri;
+}
+
+server {
 
 	root /var/www/public;
 	index index.html index.htm index.php;
 
-	server_name localhost develpr.dev www.develpr.dev;
+	server_name localhost www.develpr.dev;
 
     location / {
          try_files $uri $uri/ /index.php$is_args$args;

@@ -94,15 +94,47 @@ Post::creating(function($post){
 });
 
 Project::updating(function($project){
-    $slug = Str::slug($project->title);
+
+    $originalSlug = $project->slug;
+
+	$slug = Str::slug($project->title);
     $project->slug = $slug;
+
+	//Need to add a rewrite!
+	if($originalSlug != $slug)
+	{
+		$redirect = new Develpr\Redirect;
+		$redirect->source = $originalSlug;
+		$redirect->resource_id = $project->id;
+		$redirect->type = 'project';
+
+		$redirect->save();
+	}
 });
 
 Post::updating(function($post){
+	$originalSlug = $post->slug;
+
     $slug = Str::slug($post->title);
     $post->slug = $slug;
+
+	//Need to add a rewrite!
+	if($originalSlug != $slug)
+	{
+		$redirect = new Develpr\Redirect;
+		$redirect->source = $originalSlug;
+		$redirect->resource_id = $post->id;
+		$redirect->type = 'post';
+
+		$redirect->save();
+	}
+
 });
 
+
+Develpr\Redirect::saved(function($redirect){
+	Redis::set('redirect.' . $redirect->type . ":". $redirect->source, $redirect->resource_id);
+});
 
 Configuration::saved(function($configuration){
     Redis::set('configuration.' . strtolower($configuration->key), $configuration->value);

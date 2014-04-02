@@ -22,8 +22,21 @@ Route::get('/', function()
 
 Route::get('/blog/{slug}', function($slug){
 
-    $slug = trim(strtolower($slug));
-    $post = Post::where('slug', '=', $slug)->firstOrFail();
+	if(is_numeric($slug))
+		$post = Post::find($slug);
+	if(!is_numeric($slug) || !$post) //it's possible that the title was numeric
+	{
+		$slug = trim(strtolower($slug));
+
+		$post = Post::where('slug', '=', $slug)->first();
+	}
+	if(!$post)
+	{
+		$id = Redis::get('redirect.post:' . $slug);
+		$post = Post::findOrFail($id);
+
+		return Redirect::to($post->getUrl(), 301);
+	}
 
     return View::make('posts.show', array('post' => $post));
 
