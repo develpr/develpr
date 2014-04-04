@@ -39,61 +39,15 @@
         </div>
     </div>
     <div class="large-7 medium-7 show-for-large-up columns" style="padding-right:0;">
-        <nav class="large-menu">
-            <ul>
-                <li>
-                    <a href="/projects">
-                        <i class="fi-link">
-                        </i>
-                        Projects </a>
-                </li>
-                <li>
-                    <a href="/blog">
-                        <i class="fi-link">
-                        </i>
-                        Blog </a>
-                </li>
-                <li>
-                    <a href="http://www.github.com/develpr" target="_blank">
-                        <i class="fi-social-github"></i>
-                        Github </a>
-                </li>
-                <!--
-    <li>
-    <a href="/kevin-mitchell-resume">
-    <i class="fi-link">
-    </i>
-    Resume
-    </a>
-    </li>
-    -->
-                <li>
-                    <a href="/contact">
-                        <i class="fi-mail">
-                        </i>
-                        Contact </a>
-                </li>
-                <li>
-                    @if(Auth::check())
-                    <a href="/logout">
-                        <i class="fi-unlock"></i>
-                        <span class="show-for-small-down">Logout</span>
-                    </a>
-                    @else
-                    <a href="/login">
-                        <i class="fi-lock"></i>
-                        <span class="show-for-small-down">Login</span>
-                    </a>
-                    @endif
-                </li>
-            </ul>
-        </nav>
+		@include('layouts.common.menu')
     </div>
 </div>
 <div class="row content-cards">
     <div class="columns large-9 small-12 create-right-buffer">
+		@include('layouts.common.errors')
         @yield('content')
     </div>
+	@section('sidebar')
     <div class="columns large-3 small-12">
         <div class="row">
             <div class="columns content-card">
@@ -188,6 +142,7 @@
             </div>
         </div>
     </div><!-- END RIGHT SIDE BAR -->
+	@show
 </div><!-- END MAIN CONTENT -->
 <div class="row footer">
     <div class="columns large-12">

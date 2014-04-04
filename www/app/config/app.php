@@ -182,6 +182,7 @@ return array(
         'imagePath' => '/uploads/images/',
         'postsUrl'  => '/blog/',
         'projectsUrl'   => '/projects/',
+		'email'		=> 'kevin@develpr.com',
     ),
 
 
