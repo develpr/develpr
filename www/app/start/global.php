@@ -93,6 +93,22 @@ Post::creating(function($post){
     $post->slug = $slug;
 });
 
+//todo: work through redirect logic, redundancy is present!!
+
+Project::saved(function($project){
+    $redirect = Develpr\Redirect::where('source', '=', $project->getUrl())->first();
+    if($redirect)
+        $redirect->delete();
+    Redis::del('redirect:' . $project->getUrl());
+});
+
+Post::saved(function($post){
+    $redirect = Develpr\Redirect::where('source', '=', $post->getUrl())->first();
+    if($redirect)
+        $redirect->delete();
+    Redis::del('redirect:' . $post->getUrl());
+});
+
 Project::updating(function($project){
 
     $originalSlug = $project->slug;
@@ -104,7 +120,14 @@ Project::updating(function($project){
 	//Need to add a rewrite!
 	if($originalSlug != $slug)
 	{
-		$redirect = new Develpr\Redirect;
+		//We aren't getting too fancy, and if you've changed multiple items to have the same title
+		//Then we're going to take over the previous redirect - old links may point to the wrong
+		//new content, but at least there won't be a 404.
+		$redirect = Develpr\Redirect::where('source', '=', $originalUrl)->first();
+		
+		if(!$redirect)		
+			$redirect = new Develpr\Redirect;
+		
 		$redirect->source = $originalUrl;
 		$redirect->resource_id = $project->id;
 		$redirect->type = 'project';
@@ -123,7 +146,14 @@ Post::updating(function($post){
 	//Need to add a rewrite!
 	if($originalSlug != $slug)
 	{
-		$redirect = new Develpr\Redirect;
+		//We aren't getting too fancy, and if you've changed multiple items to have the same title
+		//Then we're going to take over the previous redirect - old links may point to the wrong
+		//new content, but at least there won't be a 404.
+		$redirect = Develpr\Redirect::where('source', '=', $originalUrl)->first();
+		
+		if(!$redirect)		
+			$redirect = new Develpr\Redirect;
+
 		$redirect->source = $originalUrl;
 		$redirect->resource_id = $post->id;
 		$redirect->type = 'post';
@@ -135,6 +165,7 @@ Post::updating(function($post){
 
 
 Develpr\Redirect::saved(function($redirect){
+    Redis::del('redirect:' . $redirect->source);
 	Redis::set('redirect:' . $redirect->source, $redirect->resource_id);
 });
 

@@ -70,6 +70,7 @@ sudo update-rc.d redis_6379 defaults
 
 sudo mysql -uroot -ppassword -e 'create database `database`;'
 cd /var/www/
-sudo composer update
+sudo composer install
+sudo composer dump-autoload -o
 php artisan migrate:install
 php artisan migrate:refresh --seed
