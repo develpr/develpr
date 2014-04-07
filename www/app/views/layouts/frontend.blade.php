@@ -87,6 +87,7 @@
                         <div class="tel">
                             +1.616.401.2066
                         </div>
+                        <a href="http://www.shoelessone.com" target="_blank">personal blog</a>
                     </div>
                     <div class="columns large-12">
                         <div class="more-card">

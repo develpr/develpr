@@ -59,22 +59,21 @@ Route::post('/contact', function(){
 
 	//if this was set, then we know that somebody either unhid it, or a robot filled out this form.
 	//aka honeypot. Not perfect, but yolo
-	if(Input::has('verify'))
+	if(Input::has('human'))
 		return Redirect::to('/contact');
-
 
 	$validator = Validator::make(
 		array(
 			'email' => Input::get('email'),
 			'name' => Input::get('name'),
 			'message' => Input::get('message'),
-			'human'	=> Input::get('human')
+			'verify'	=> Input::get('verify')
 		),
 		array(
 			'email' => 'required|email',
 			'name' => 'required',
 			'message' => 'required|min:8',
-			'human'	=> 'required'
+			'verify'	=> 'required'
 		)
 	);
 
@@ -87,8 +86,7 @@ Route::post('/contact', function(){
 		$message->to($input['email'], $input['name'])->subject('Message from Develpr.com Contact form');
 	});
 
-
-	$afs = '';
+    return Redirect::to('/contact')->with(array('success' => true));
 });
 
 Route::get('/login', function(){
