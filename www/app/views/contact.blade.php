@@ -8,6 +8,11 @@ Contact
 
 <div class="row">
 	<div class="columns content-card">
+        @if(Session::has('success'))
+        <h5 class="alert-box success">
+            {{ Session::get('success') }}
+        </h5>
+        @endif
 		<h1>
 			Get in touch.
 		</h1>

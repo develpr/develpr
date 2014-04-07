@@ -86,7 +86,7 @@ Route::post('/contact', function(){
 		$message->to($input['email'], $input['name'])->subject('Message from Develpr.com Contact form');
 	});
 
-    return Redirect::to('/contact')->with(array('success' => true));
+    return Redirect::to('/contact')->with(array('success' => "Sent!"));
 });
 
 Route::get('/login', function(){
