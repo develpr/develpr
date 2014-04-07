@@ -8,14 +8,14 @@ class ConfigurationsTableSeeder extends Seeder {
 
 		Configuration::create(array(
 			'key'		=> 'photo',
-			'value'		=> '/uploads/images/me.png',
+			'value'		=> '/img/me.png',
 			'user_id'	=> 1,
 			'visible'	=> true
 		));
 
 		Configuration::create(array(
 			'key'		=> 'looking',
-			'value'		=> '1',
+			'value'		=> '0',
 			'user_id'	=> 1,
 			'visible'	=> true
 		));
