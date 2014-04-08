@@ -50,6 +50,18 @@ Route::get('/blog', function(){
 Route::resource('posts', 'PostsController');
 Route::resource('projects', 'ProjectsController');
 
+Route::get('/kevin', function(){
+    return View::make('kevin');
+});
+Route::get('/kev', function(){
+    return Redirect::to('/kevin', 301);
+});
+Route::get('/kevinmitchell', function(){
+    return Redirect::to('/kevin', 301);
+});
+Route::get('/kevin-mitchell', function(){
+   return Redirect::to('/kevin', 301);
+});
 
 Route::get('/contact', function(){
 	return View::make('contact');

@@ -17,7 +17,11 @@ Edit Configurations
             @foreach($configurations as $configuration)
             <div class="large-12 small-12 columns">
                 {{Form::label($configuration->key, Str::title($configuration->key))}}
+                @if(strlen($configuration->value) > 30)
+                {{Form::textarea($configuration->key, $configuration->value)}}
+                @else
                 {{Form::text($configuration->key, $configuration->value)}}
+                @endif
             </div>
             @endforeach
             <div class="large-12 small-12 columns">
