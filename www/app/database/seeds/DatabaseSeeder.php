@@ -10,12 +10,14 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Eloquent::unguard();
+		if( App::environment() === 'development' )
+    		{
+        		$this->call('PostsTableSeeder');
+        		$this->call('ProjectsTableSeeder');
+		}
 
-		// $this->call('UserTableSeeder');
-        $this->call('PostsTableSeeder');
-        $this->call('ProjectsTableSeeder');
-        $this->call('UsersTableSeeder');
-        $this->call('ConfigurationsTableSeeder');
+        	$this->call('UsersTableSeeder');
+        	$this->call('ConfigurationsTableSeeder');
 	}
 
 }
