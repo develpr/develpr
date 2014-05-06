@@ -20,6 +20,44 @@ Route::get('/', function()
 });
 
 
+Route::get('/download-projects', function(){
+
+	$phindle = new Develpr\Phindle\Phindle(array(
+		'title' => "Kevin Mitchell's Projects from Develpr.com",
+		'publisher' => "Develpr",
+		'creator' => 'Kevin Mitchell',
+		'language' => \Develpr\Phindle\OpfRenderer::LANGUAGE_ENGLISH_US,
+		'subject' => 'Computers',
+		'description' => 'A number of projects that Kevin Mitchell has completed.',
+		'path'	=> storage_path(),
+		'isbn'  => '123456789123456',
+		'staticResourcePath'    => public_path(),
+		'cover'	=> '/Users/shoelessone/Sites/phindle/www/public/img/me_mohawk.jpg',
+		'kindlegenPath'		=> '/usr/local/bin/kindlegen'
+	));
+
+	$projects = Project::all();
+
+	foreach($projects as $project)
+	{
+		/** @var Project $project */
+
+		/** @var Illuminate\View\View $html */
+		$html = View::make('projects.book')->with(array('project' => $project))->render();
+
+		$content = new \Develpr\Phindle\Content();
+
+		$content->setHtml($html)->setTitle($project->title)->setPosition(1)->setUniqueIdentifier('project_' . $project->id);
+
+		$phindle->addContent($content);
+
+	}
+
+	$phindle->process();
+
+	echo $phindle->getAttribute('uniqueId') . '.mobi';
+});
+
 Route::get('/blog/{slug}', function($slug){
 
 	if(is_numeric($slug))
