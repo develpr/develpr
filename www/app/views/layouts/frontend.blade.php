@@ -115,14 +115,9 @@
                         <a class="email" href="mailto:kevin@develpr.com">
                             kevin@develpr.com </a>
                         <div class="adr">
-									<span class="locality">
-										Oakland
-									</span>
-                            ,
-									<span class="region">
-										CA
-									</span>
-                            ,
+									<span class="locality">Oakland</span>,
+
+									<span class="region">CA</span>,
 									<span class="postal-code">
 										94612
 									</span>
