@@ -10,8 +10,7 @@
 		"way/laravel-test-helpers": "dev-master",
 		"mockery/mockery": "dev-master",
         "way/generators": "2.*",
-		"develpr/phindle": "dev-master",
-		"barryvdh/laravel-ide-helper": "1.*"
+		"develpr/phindle": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
