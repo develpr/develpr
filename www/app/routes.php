@@ -55,7 +55,8 @@ Route::get('/download-projects', function(){
 
 	$phindle->process();
 
-	echo $phindle->getAttribute('uniqueId') . '.mobi';
+    return Response::download(storage_path() . '/' . $phindle->getAttribute('uniqueId') . '.mobi', 'Kevin_Mitchell-Develpr-Projects.mobi');
+
 });
 
 Route::get('/blog/{slug}', function($slug){
@@ -91,10 +92,6 @@ Route::resource('projects', 'ProjectsController');
 
 Route::get('/contact', function(){
 	return View::make('contact');
-});
-
-Route::post('/contact', function(){
-
 });
 
 Route::get('/login', function(){
@@ -144,33 +141,3 @@ Route::group(array('before' => 'auth'), function()
     Route::resource('configurations', 'ConfigurationsController');
     Route::put('/configurations', 'ConfigurationsController@massUpdate');
 });
-/**
- *
-function slug($title, $separator = '-', $removeWords = false)
-{
-
-$title = static::ascii($title);
-
-// Convert all dashes/undescores into separator
-$flip = $separator == '-' ? '_' : '-';
-
-$title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
-
-// Remove all characters that are not the separator, letters, numbers, or whitespace.
-$title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
-
-//If an array of words to be removed was passed in
-if($removeWords !== false && is_array($removeWords))
-{
-$title = explode(' ', $title);
-$removeWords = array_map('strtolower', $removeWords);
-$title = array_diff($title, $removeWords);
-$title = implode($separator, $title);
-}
-
-// Replace all separator characters and whitespace by a single separator
-$title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
-
-return trim($title, $separator);
-}
- */
