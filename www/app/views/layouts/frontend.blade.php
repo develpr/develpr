@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@yield('title') | Kevin Mitchell - Develpr</title>
-    <link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="/css/app.css" type="text/css">
     <!--[if lt IE 9]>
     <script src="bower_components/modernizr/modernizr.js"></script>
@@ -215,3 +215,4 @@
 </script>
 </body>
 </html>
+<link href='http://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>
