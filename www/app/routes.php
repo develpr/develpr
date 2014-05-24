@@ -29,7 +29,7 @@ Route::get('/download-projects', function(){
 		'language' => \Develpr\Phindle\OpfRenderer::LANGUAGE_ENGLISH_US,
 		'subject' => 'Computers',
 		'description' => 'A number of projects that Kevin Mitchell has completed.',
-		'path'	=> storage_path(),
+		'path'	=> storage_path() . '/ebooks',
 		'isbn'  => '123456789123456',
 		'staticResourcePath'    => public_path(),
 		'cover'	=> '/Users/shoelessone/Sites/phindle/www/public/img/me_mohawk.jpg',
@@ -55,7 +55,7 @@ Route::get('/download-projects', function(){
 
 	$phindle->process();
 
-    return Response::download(storage_path() . '/' . $phindle->getAttribute('uniqueId') . '.mobi', 'Kevin_Mitchell-Develpr-Projects.mobi');
+    return Response::download(storage_path() . '/ebooks/' . $phindle->getAttribute('uniqueId') . '.mobi', 'Kevin_Mitchell-Develpr-Projects.mobi');
 
 });
 
