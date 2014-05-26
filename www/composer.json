@@ -9,9 +9,6 @@
         "schickling/backup": "dev-master"
 	},
 	"require-dev":{
-		"way/laravel-test-helpers": "dev-master",
-		"mockery/mockery": "dev-master",
-        "way/generators": "2.*"
 	},
 	"autoload": {
 		"classmap": [
