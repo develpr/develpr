@@ -108,6 +108,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Develpr\SettingServiceProvider',
+        'Schickling\Backup\BackupServiceProvider',
+        'Aws\Laravel\AwsServiceProvider',
 
 	),
 
@@ -175,6 +177,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Setting'		  => 'Develpr\Facades\Setting',
+        'AWS'             => 'Aws\Laravel\AwsFacade',
 
 	),
 

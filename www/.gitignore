@@ -8,3 +8,6 @@ composer.lock
 .DS_Store
 Thumbs.db
 .idea
+/app/storage/ebooks/
+/workbench/*
+/app/storage/dumps/

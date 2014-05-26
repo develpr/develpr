@@ -349,3 +349,31 @@ ul.pagination{
   padding:0.1825rem 0.625rem 0.1825rem; //todo: use variables
   background: #9e8e80;
 }
+
+code{
+  line-height:1.1 !important;
+}
+
+.project{
+
+  overflow: scroll;
+
+  h1{
+    font-size:2em;
+  }
+
+  a{
+    text-decoration: underline;
+  }
+
+  h6{
+    font-size:1.6em;
+  }
+
+  p{
+    font-weight:100;
+    line-height:1.7em;
+    margin-bottom:2em;
+  }
+
+}

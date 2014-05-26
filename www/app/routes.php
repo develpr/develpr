@@ -20,6 +20,45 @@ Route::get('/', function()
 });
 
 
+Route::get('/download-projects', function(){
+
+	$phindle = new Develpr\Phindle\Phindle(array(
+		'title' => "Kevin Mitchell's Projects from Develpr.com",
+		'publisher' => "Develpr",
+		'creator' => 'Kevin Mitchell',
+		'language' => \Develpr\Phindle\OpfRenderer::LANGUAGE_ENGLISH_US,
+		'subject' => 'Computers',
+		'description' => 'A number of projects that Kevin Mitchell has completed.',
+		'path'	=> storage_path() . '/ebooks',
+		'isbn'  => '123456789123456',
+		'staticResourcePath'    => public_path(),
+		'cover'	=> '/Users/shoelessone/Sites/phindle/www/public/img/me_mohawk.jpg',
+		'kindlegenPath'		=> '/usr/local/bin/kindlegen'
+	));
+
+	$projects = Project::all();
+
+	foreach($projects as $project)
+	{
+		/** @var Project $project */
+
+		/** @var Illuminate\View\View $html */
+		$html = View::make('projects.book')->with(array('project' => $project))->render();
+
+		$content = new \Develpr\Phindle\Content();
+
+		$content->setHtml($html)->setTitle($project->title)->setPosition(1)->setUniqueIdentifier('project_' . $project->id);
+
+		$phindle->addContent($content);
+
+	}
+
+	$phindle->process();
+
+    return Response::download(storage_path() . '/ebooks/' . $phindle->getAttribute('uniqueId') . '.mobi', 'Kevin_Mitchell-Develpr-Projects.mobi');
+
+});
+
 Route::get('/blog/{slug}', function($slug){
 
 	if(is_numeric($slug))
@@ -148,33 +187,3 @@ Route::group(array('before' => 'auth'), function()
     Route::resource('configurations', 'ConfigurationsController');
     Route::put('/configurations', 'ConfigurationsController@massUpdate');
 });
-/**
- *
-function slug($title, $separator = '-', $removeWords = false)
-{
-
-$title = static::ascii($title);
-
-// Convert all dashes/undescores into separator
-$flip = $separator == '-' ? '_' : '-';
-
-$title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
-
-// Remove all characters that are not the separator, letters, numbers, or whitespace.
-$title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
-
-//If an array of words to be removed was passed in
-if($removeWords !== false && is_array($removeWords))
-{
-$title = explode(' ', $title);
-$removeWords = array_map('strtolower', $removeWords);
-$title = array_diff($title, $removeWords);
-$title = implode($separator, $title);
-}
-
-// Replace all separator characters and whitespace by a single separator
-$title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
-
-return trim($title, $separator);
-}
- */

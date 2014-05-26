@@ -18,7 +18,7 @@ sudo apt-get install nginx -y
 sudo apt-get install php5-mysql -y
 
 
-sudo apt-get install php5-fpm php5-cli php5-cgi -y
+sudo apt-get install php5-fpm php5-cli php5-cgi php5-curl -y
 sudo apt-get install php5-mcrypt -y
 
 #Install/configure xdebug
