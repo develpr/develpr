@@ -7020,13 +7020,17 @@ ul.pagination {
 code {
   line-height: 1.1 !important; }
 
+.project ol li, .blog ol li {
+  margin-left: 1em; }
+  .project ol li a, .blog ol li a {
+    text-decoration: underline;
+    font-weight: bold; }
 .project h1, .blog h1 {
   font-size: 2em; }
-.project a, .blog a {
-  text-decoration: underline; }
 .project h6, .blog h6 {
   font-size: 1.6em; }
 .project p, .blog p {
-  font-weight: 100;
   line-height: 1.7em;
   margin-bottom: 2em; }
+  .project p a, .blog p a {
+    text-decoration: underline; }
