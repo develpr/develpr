@@ -5,8 +5,9 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-        "aws/aws-sdk-php": "2.6.*@dev",
-        "schickling/backup": "dev-master"
+      "aws/aws-sdk-php": "2.6.*@dev",
+      "schickling/backup": "dev-master",
+		"develpr/phindle": "0.2.0"
 	},
 	"require-dev":{
 	},
