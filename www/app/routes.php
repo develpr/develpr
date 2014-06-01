@@ -33,7 +33,8 @@ Route::get('/download-projects', function(){
 		'isbn'  => '123456789123456',
 		'staticResourcePath'    => public_path(),
 		'cover'	=> '/Users/shoelessone/Sites/phindle/www/public/img/me_mohawk.jpg',
-		'kindlegenPath'		=> '/usr/local/bin/kindlegen'
+		'kindlegenPath'		=> '/usr/local/bin/kindlegen',
+        'downloadImages'    => true,
 	));
 
 	$projects = Project::all();
