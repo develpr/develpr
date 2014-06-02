@@ -188,3 +188,39 @@ Route::group(array('before' => 'auth'), function()
     Route::resource('configurations', 'ConfigurationsController');
     Route::put('/configurations', 'ConfigurationsController@massUpdate');
 });
+
+
+Route::get('sitemap', function(){
+
+	// create new sitemap object
+	$sitemap = App::make("sitemap");
+
+	// set cache (key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean))
+	// by default cache is disabled
+	$sitemap->setCache(false);
+
+	$posts = Post::orderBy('created_at', 'desc')->get();
+	$projects = Project::orderBy('created_at', 'desc')->get();
+
+	$first = $posts->first();
+
+	// add item to the sitemap (url, date, priority, freq)
+	$sitemap->add(URL::to('/'), $first->created_at, '1.0', 'weekly');
+	$sitemap->add(URL::to('/kevin'), Configuration::find(4)->modified_at, '0.9', 'monthly');
+
+	// add every post to the sitemap
+	foreach ($posts as $post)
+	{
+		$sitemap->add($post->getUrl(true), $post->modified_at, .6, "weekly");
+	}
+
+	// add every project to the sitemap
+	foreach ($projects as $project)
+	{
+		$sitemap->add($project->getUrl(true), $project->modified_at, .8, "monthly");
+	}
+
+	// show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
+	return $sitemap->render('xml');
+
+});

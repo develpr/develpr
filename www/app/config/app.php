@@ -109,6 +109,7 @@ return array(
         'Develpr\SettingServiceProvider',
         'Schickling\Backup\BackupServiceProvider',
         'Aws\Laravel\AwsServiceProvider',
+		'Roumen\Sitemap\SitemapServiceProvider',
 
 	),
 
