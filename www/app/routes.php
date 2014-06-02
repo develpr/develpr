@@ -211,13 +211,13 @@ Route::get('sitemap', function(){
 	// add every post to the sitemap
 	foreach ($posts as $post)
 	{
-		$sitemap->add($post->getUrl(true), $post->modified_at, .6, "weekly");
+		$sitemap->add($post->getUrl(), $post->modified_at, .6, "weekly");
 	}
 
 	// add every project to the sitemap
 	foreach ($projects as $project)
 	{
-		$sitemap->add($project->getUrl(true), $project->modified_at, .8, "monthly");
+		$sitemap->add($project->getUrl(), $project->modified_at, .8, "monthly");
 	}
 
 	// show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
