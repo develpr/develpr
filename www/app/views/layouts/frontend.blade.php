@@ -167,6 +167,7 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-10817444-15', 'develpr.com');
+    ga('require', 'displayfeatures');
     ga('send', 'pageview');
 </script>
 </body>
