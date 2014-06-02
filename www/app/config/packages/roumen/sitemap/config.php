@@ -4,5 +4,5 @@
 return array(
     'use_cache' => true,
     'cache_key' => 'Laravel.Sitemap.',
-    'cache_duration' => 3600,
+    'cache_duration' => 600,
 );

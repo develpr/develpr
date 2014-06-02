@@ -20,7 +20,11 @@ class Post extends \Eloquent {
 
     public function getUrl($relative = true)
     {
-        return Config::get('app.develpr.postsUrl') . $this->slug;
+		if($relative)
+			return Config::get('app.develpr.postsUrl') . $this->slug;
+		else
+			return URL::to(Config::get('app.develpr.postsUrl') . $this->slug);
+
     }
 
     public function scopePublished($query)

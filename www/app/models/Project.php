@@ -21,8 +21,11 @@ class Project extends \Eloquent {
 
     public function getUrl($relative = true)
     {
-        //todo: add relative check
-        return Config::get('app.develpr.projectsUrl') . $this->slug;
+        if($relative)
+        	return Config::get('app.develpr.projectsUrl') . $this->slug;
+		else
+			return URL::to(Config::get('app.develpr.projectsUrl') . $this->slug);
+
     }
 
     public function scopePublished($query)
